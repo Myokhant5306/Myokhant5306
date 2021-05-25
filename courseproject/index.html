@@ -1,0 +1,84 @@
+<!doctype html>  
+<head>  
+   <script type="text/javascript" src="./lib/cryptojs_v3.1.2.js"></script>  
+    <script type="text/javascript" src="./dist/xapiwrapper.min.js"></script>       
+      
+    <script>  
+    function send_statement(){  
+        var conf = {  
+             "endpoint" : "https://cloud.scorm.com/lrs/CMDBS1Z9DG/",  
+             "user" : "sealion339824@gmail.com",
+             "password" : "Myokhant5306",  
+             };  
+  
+        ADL.XAPIWrapper.changeConfig(conf);  
+           
+        //define the xapi statement being sent  
+        var statement = {  
+                "actor": {
+        "mbox": "mailto:sealion339824@gmail.com",
+        "name": "Myo Khant ",
+        "objectType": "Agent"
+    },
+    "verb": {
+        "id": "https://w3id.org/xapi/dod-isd/verbs/wrote",
+        "display": {
+            "en-US": "wrote"
+        }
+    },
+    "object": {
+        "id": "https://www/www.example.com/xapi/xapi-statement",
+        "definition": {
+            "name": {
+                "en-US": "xAP example"
+            },
+            "description": {
+                "en-US": "xAPI example"
+            },
+            "extensions": {
+                "http://example.com/projectname": "курсовой проект"
+            }
+        },
+        "objectType": "Activity"
+    },
+    "result": {
+        "score": {
+            "raw": 4,
+            "min": 1,
+            "max": 5
+        },
+        "success": true,
+        "completion": true,
+        "extensions": {
+            "http://example.com/study-condition": "average"
+        }
+    },
+    "context": {
+        "instructor": {
+            "mbox": "mailto:goss@itmo.ru",
+            "name": "Илья Борисович"
+        },
+        "contextActivities": {
+            "parent": {
+                "id": "http://example.com/activities/web-technology-course"
+            },
+            "grouping": {
+                "id": "http://example.com/activities/itmo"
+            }
+        },
+        "extensions": {
+            "http://example.com/teacher": "доцент"
+        }
+    }        }; //end statement definition  
+   
+        // Dispatch the statement to the LRS  
+        var result = ADL.XAPIWrapper.sendStatement(statement);  
+        }  
+    </script>  
+  
+</head>  
+  
+<body>  
+    <button type="button" onclick="send_statement()">Send Statements</button>  
+</body>  
+</html>
